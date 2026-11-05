@@ -67,3 +67,16 @@ Observed on 2026-11-05. Exact timings and counts change as new workflows run.
   passes, and `render.yaml` validates against Render's current official schema.
 - Remote deployment status is recorded separately after the hosting operation;
   configuration and local checks do not constitute a public deployment.
+
+## Public HTTPS verification
+
+- GitHub source published to `DEEPUOG21/OPS_PiLOT`, application commit
+  `a73b2f45e9ec41c3b29448449a3af5a1b47d5800`.
+- Render built the Docker image and serves the showcase at
+  https://opspilot-showcase.onrender.com.
+- Public checks passed for dashboard HTML, SPA deep links, all four bundled
+  assets, `/health`, analytics, seeded traces, the paired report, JSON API 404s,
+  and external-ingestion restrictions. Showcase settings report no enabled
+  provider.
+- Native Docker remains unavailable locally; the hosted Docker build is now
+  verified. Browser visual-layout QA remains unverified.

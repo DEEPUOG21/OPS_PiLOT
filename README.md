@@ -4,6 +4,11 @@
 
 Monitor, understand, evaluate, and optimize every AI execution.
 
+**[Launch the live demo](https://opspilot-showcase.onrender.com)** · Interactive mock workflows, trace inspection, evaluations, and prompt comparisons.
+
+The free demo may need about a minute to wake after inactivity. Demo changes
+reset when the service restarts. [Hosting details](deploy/README.md).
+
 OpsPilot follows a request through agents, model calls, retrieval, and tools,
 then turns that telemetry into inspectable traces, measured analytics, quality
 evaluations, and evidence-backed optimization recommendations. It is a working

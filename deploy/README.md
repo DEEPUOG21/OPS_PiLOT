@@ -1,5 +1,10 @@
 # Public GitHub showcase
 
+**Live demo: https://opspilot-showcase.onrender.com**
+
+Hosted as a free Docker web service in Singapore. The source is published at
+https://github.com/DEEPUOG21/OPS_PiLOT.
+
 `deploy/Dockerfile` builds React and serves its bundle from FastAPI. The API,
 SPA routes, assets, and Swagger documentation all use the same public origin.
 `render.yaml` defines one web service on Render's free compute plan, without
