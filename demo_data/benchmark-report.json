@@ -1,0 +1,62 @@
+{
+  "id": 7,
+  "name": "Support baseline vs optimized",
+  "dataset_id": 1,
+  "source": "demo",
+  "status": "complete",
+  "created_at": "2026-11-05T16:37:28.264226+00:00",
+  "paired": true,
+  "evaluation_method": "heuristic",
+  "versions": [
+    {
+      "version_id": 1,
+      "version": 1,
+      "runs": 4,
+      "successful": 4,
+      "latency_ms": 142.6711,
+      "tokens": 295.25,
+      "estimated_cost": 5.80125e-05,
+      "answer_relevance": 0.875,
+      "faithfulness": 1.0,
+      "context_relevance": 0.875,
+      "correctness": 1.0,
+      "traces": [
+        "5b287d5424631010ac9f8476085c8181",
+        "c03c9e04a350025fdddf304a75074f32",
+        "d8936c5a4563bcbd36484ac65ce953d6",
+        "80a52fd1ad29a44b5e4867635869b280"
+      ],
+      "evaluation_ids": [
+        55,
+        57,
+        59,
+        61
+      ]
+    },
+    {
+      "version_id": 2,
+      "version": 2,
+      "runs": 4,
+      "successful": 4,
+      "latency_ms": 134.806725,
+      "tokens": 160,
+      "estimated_cost": 3.7724999999999995e-05,
+      "answer_relevance": 0.875,
+      "faithfulness": 1.0,
+      "context_relevance": 0.875,
+      "correctness": 1.0,
+      "traces": [
+        "0384563382cd72e358ef51b80aab4182",
+        "55b47e1470fe41a693710ffe868612db",
+        "b8194904d106d47bbdf641e4de7a79ea",
+        "19efe47947e350aac72e0f1182a5f662"
+      ],
+      "evaluation_ids": [
+        56,
+        58,
+        60,
+        62
+      ]
+    }
+  ]
+}

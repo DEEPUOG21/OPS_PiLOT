@@ -1,0 +1,48 @@
+services:
+  backend:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    ports: ["127.0.0.1:8001:8000"]
+    environment:
+      DATABASE_URL: sqlite:////data/opspilot.db
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      OPSPILOT_API_KEY: ${OPSPILOT_API_KEY:-}
+      DEMO_AUTO_SEED: ${DEMO_AUTO_SEED:-true}
+      CORS_ORIGINS: http://localhost:8080
+    volumes: ["opspilot-data:/data"]
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request; urllib.request.urlopen('http://127.0.0.1:8000/health')"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+  frontend:
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+    ports: ["127.0.0.1:8080:80"]
+    depends_on:
+      backend: {condition: service_healthy}
+  sample:
+    build:
+      context: .
+      dockerfile: backend/Dockerfile
+    command: ["uvicorn", "sample_ai_app.main:app", "--host", "0.0.0.0", "--port", "8002"]
+    ports: ["127.0.0.1:8002:8002"]
+    environment:
+      OTEL_EXPORTER_OTLP_TRACES_ENDPOINT: http://backend:8000/api/otlp/v1/traces
+      OPENAI_API_KEY: ${OPENAI_API_KEY:-}
+      OPENAI_MODEL: ${OPENAI_MODEL:-gpt-4o-mini}
+      OPENAI_BASE_URL: ${OPENAI_BASE_URL:-https://api.openai.com/v1}
+      OPSPILOT_API_KEY: ${OPSPILOT_API_KEY:-}
+    depends_on:
+      backend: {condition: service_healthy}
+  tunnel:
+    image: cloudflare/cloudflared:latest
+    command: tunnel --no-autoupdate --url http://frontend:80
+    profiles: ["tunnel"]
+    depends_on: [frontend]
+volumes:
+  opspilot-data:

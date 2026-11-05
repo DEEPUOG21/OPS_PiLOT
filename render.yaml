@@ -1,0 +1,23 @@
+services:
+  - type: web
+    name: opspilot-showcase
+    runtime: docker
+    plan: free
+    region: singapore
+    dockerfilePath: ./deploy/Dockerfile
+    dockerContext: .
+    healthCheckPath: /health
+    autoDeployTrigger: commit
+    envVars:
+      - key: SHOWCASE_MODE
+        value: "true"
+      - key: DEMO_AUTO_SEED
+        value: "true"
+      - key: DATABASE_URL
+        value: sqlite:////data/opspilot.db
+      - key: STATIC_DIR
+        value: /app/static
+      - key: OPENAI_API_KEY
+        value: ""
+      - key: OPSPILOT_API_KEY
+        value: ""
